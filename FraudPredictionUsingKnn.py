@@ -37,14 +37,24 @@ print("--------------------Single prediction----------------------------")
 
 #columns it is asking for
 # Dont pass nameOrig,nameDest and isFraud in it
-# #   step,type,amount,oldbalanceOrg,oldbalanceDest,newbalanceDest,isFlaggedFraud
+# #   step,type,amount,oldbalanceOrg,newbalanceOrig,oldbalanceDest,newbalanceDest,isFlaggedFraud
 NewData1=[ 1,1,9839.64,170136.00,160296.36,0.00,0.00,0]
 NewData2=[84,2,8380.79,8380.79,0,0,0,0]
 predict_single=knn.predict([np.array(NewData2)])
 
 print("prediction of given data is = ",predict_single[0])
-
-if(predict_single[0]==0):
-    print("Dont worry there is no Fraud")
+Dstep=input("Enter the value of step")
+Dtype=input("Enter the value of type")
+Damount=input("Enter the value of amount")
+DoldBalanceOrg=input("Enter the value of old balance of org")
+DnewBalanceOrg=input("Enter the value of new balance of org")
+DoldBalanceDest=input("Enter the value of old balance of Dest")
+DnewBalanceDest=input("Enter the value of new balance of Dest")
+DisFlagFraud=input("Enter the flag of fraud")
+UserInsertedData=[int(Dstep),int(Dtype),float(Damount),float(DoldBalanceOrg),float(DnewBalanceOrg),float(DoldBalanceDest),float(DnewBalanceDest),int(DisFlagFraud)]
+predictByUser=knn.predict([np.array(UserInsertedData)])
+if(predictByUser[0]==0):
+    print("Your Data:- Dont worry there is no Fraud")
 else:
-    print("There is Fraud")
+    print("Your Data:- There is Fraud")
+print(predictByUser[0])
